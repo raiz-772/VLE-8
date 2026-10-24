@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+  labels:
+    app: vle8-demo
+    version: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vle8-demo
+      version: green
+  template:
+    metadata:
+      labels:
+        app: vle8-demo
+        version: green
+    spec:
+      containers:
+        - name: web
+          image: Raiz-m/vle8-blue-green:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
